@@ -1,3 +1,20 @@
+成员变量的默认值如下表：
+
+Type	| Default Value
+------| -------------
+boolean	|False
+byte	|0
+short	|0
+int	|0
+long	|0L
+char	|\u0000
+float	|0.0f
+double	|0.0d
+object reference	|null
+
+可以编写一个测试的类来验证。源代码 [InitializationWithDefaults.java](InitializationWithDefaults.java)
+
+```Java
 package com.javacodegeeks.advanced.construction;
 
 public class InitializationWithDefaults {
@@ -28,3 +45,18 @@ public class InitializationWithDefaults {
       final InitializationWithDefaults initializationWithDefaults = new InitializationWithDefaults();
     }
 }
+```
+
+执行结果为
+
+```
+booleanMember = false
+byteMember = 0
+shortMember = 0
+intMember = 0
+longMember = 0
+charMember = 0
+floatMember = 0.0
+doubleMember = 0.0
+referenceMember = null
+```
