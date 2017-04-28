@@ -16,7 +16,7 @@ float	|0.0f
 double	|0.0d
 object reference	|null
 
-···Java
+```Java
 package com.javacodegeeks.advanced.construction;
 
 public class InitializationWithDefaults {
@@ -46,7 +46,7 @@ public class InitializationWithDefaults {
 ```
 
 执行初始化
-```
+```Java
 final InitializationWithDefaults initializationWithDefaults = new InitializationWithDefaults();
 ```
 
