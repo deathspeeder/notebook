@@ -178,6 +178,7 @@ for (String s : array) {
 以此为标号存储这些元素的效果看起来就是
 
 位置 | 存储
+-----|-----
 0 | "Guangzhou"
 1 |
 2 | "Chengdu"
