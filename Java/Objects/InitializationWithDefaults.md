@@ -1,6 +1,6 @@
 成员变量的默认值如下表：
 
-Type	| Default Value
+类型	| 默认值
 ------| -------------
 boolean	|False
 byte	|0

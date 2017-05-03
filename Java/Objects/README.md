@@ -4,6 +4,6 @@
 ## [类初始化顺序](InitializationOrder.md)
 ## [单例模式](Singleton.md)
 ## 工厂模式：面向接口编程
-## hashCode 和 equals 方法
+## [hashCode 和 equals 方法](ObjectHash.md)
 ## 序列化与反序列化
 ## 反射
