@@ -281,3 +281,6 @@ public static int hashCode(Object a[]) {
 ## 应用
 
 `equals`方法主要在比较两个对象时用到，`hashCode`主要在哈希表相关数据结构中用到，详见`HashSet`，`HashMap`。
+  equals()相等的两个对象，hashcode()一定相等，equals()不相等的两个对象，却并不能证明他们的hashcode()不相等。换句话说，equals()方法不相等的两个对象，hashCode()有可能相等。（我的理解是由于哈希码在生成的时候产生冲突造成的）
+
+反过来：hashcode()不等，一定能推出equals()也不等；hashcode()相等，equals()可能相等，也可能不等。在object类中，hashcode()方法是本地方法，返回的是对象的地址值，而object类中的equals()方法比较的也是两个对象的地址值，如果equals()相等，说明两个对象地址值也相等，当然hashcode() 也就相等了
