@@ -114,3 +114,4 @@ public class InitializationOrderChild extends InitializationOrderParent {
 ```
 
 静态变量和静态初始化块之间、变量和初始化块之间的先后顺序取决于它们在类中出现的先后顺序。
+http://www.tuicool.com/articles/zeamyeQ 
