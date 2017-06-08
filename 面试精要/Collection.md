@@ -4,6 +4,7 @@
 从 -128 到 127。我们都知道byte类型的取值范围是-128—127，如果我在代码中定义一个byte类型的变量a，并且给他赋值127，及byte a = 127。我再定义一个
 byte b = a + 1；
 很显然它的值会超出byte的取值范围，而它会变成-128,（任何整型类型的最大值+1，结果返回该类型的最小值。） 
+
 2.JRE、JDK、JVM 及 JIT 之间有什么不同？
 
 JRE 代表 Java 运行时（Java run-time），是运行 Java 应用所必须的。JDK 代表 Java 开发工具（Java development kit），是 Java 程序的开发工具，
