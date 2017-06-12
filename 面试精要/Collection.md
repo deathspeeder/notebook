@@ -13,7 +13,7 @@ JRE 代表 Java 运行时（Java run-time），是运行 Java 应用所必须的
 
 3.写一段代码在遍历 ArrayList 时移除一个元素
 
-//第一种错误的实现方式
+第一种错误的实现方式
   public  static void remove(ArrayList list,String str){
 	  
 	  for(int i=0;i<list.size();i++){
@@ -21,11 +21,10 @@ JRE 代表 Java 运行时（Java run-time），是运行 Java 应用所必须的
 		  if(s.equals(str)){
 			  list.remove(s);
 		  }
-	  }
-	  
- 
+	  }	  
   }
-//第二种正确的倒序遍历的实现方式
+  
+第二种正确的倒序遍历的实现方式
   public  static void remove1(ArrayList list,String str){
 	  for(int i=list.size()-1;i>=0;i--){
 		  String s=(String) list.get(i);
@@ -35,7 +34,8 @@ JRE 代表 Java 运行时（Java run-time），是运行 Java 应用所必须的
 	  }
 	  
   }
-  //第三种使用迭代器的遍历实现方式
+  
+  第三种使用迭代器的遍历实现方式
   public static void remove2(ArrayList list,String str){
 	  Iterator it=list.iterator();
 	  while(it.hasNext()){
