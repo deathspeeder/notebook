@@ -26,6 +26,7 @@ JRE 代表 Java 运行时（Java run-time），是运行 Java 应用所必须的
   
 第二种正确的倒序遍历的实现方式
   public  static void remove1(ArrayList list,String str){
+  
 	  for(int i=list.size()-1;i>=0;i--){
 		  String s=(String) list.get(i);
 		  if(s.equals(str)){
@@ -37,6 +38,7 @@ JRE 代表 Java 运行时（Java run-time），是运行 Java 应用所必须的
   
   第三种使用迭代器的遍历实现方式
   public static void remove2(ArrayList list,String str){
+  
 	  Iterator it=list.iterator();
 	  while(it.hasNext()){
 		  String s =(String) it.next();
