@@ -72,8 +72,9 @@
     elements[j] = temp;
   }
 ```
+- 代码：[QuickSort.java](QuickSort.java)
+- 参考：[维基百科QuickSort](https://en.wikipedia.org/wiki/Quicksort)
 
-参考：[维基百科QuickSort](https://en.wikipedia.org/wiki/Quicksort)
 ## 分布式排序
 
 ## 参考
