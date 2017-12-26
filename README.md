@@ -5,5 +5,6 @@
 ### [Java](Java/README.md)
 ### Scala
 ### [面试精要](面试精要/README.md)
-### 算法
-#### [排序](Algorithms/Sorting/README.md)
+### [数据结构](DataStructure/README.md)
+### [算法](Algorithms/README.md)
+
