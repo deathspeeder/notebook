@@ -1,35 +1,17 @@
+package com.ms.sorting;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class QuickSort {
-
-  public static void debugPrint(List<Integer> elements) {
-    elements.stream().map(i -> i.toString()).reduce((i, j) -> i + "," + j).ifPresent(s -> System.out.println(s));
-  }
-
-  public static void run(String name, List<Integer> elements) {
-    System.out.println("case " + name);
-    debugPrint(elements);
-    System.out.println("====");
-    debugPrint(quickSort(elements));
-    System.out.println("====");
-    debugPrint(quickSortCompact(elements));
-    System.out.println("====");
-  }
+public class QuickSort extends BaseSort {
 
   public static void main(String[] args) {
-    List<Integer> case1 = Arrays.asList(new Integer[] { 4, 5, 6, 1, 6, 3, 2, 7, 5 });
-
-    List<Integer> case2 = Arrays.asList(new Integer[] { 3, 3, 3, 3 });
-
-    run("case 1", case1);
-    run("case 2", case2);
+    new QuickSort().run();
   }
 
-  public static List<Integer> quickSort(List<Integer> elements) {
+  @Override
+  public List<Integer> sort(List<Integer> elements) {
     if (elements.size() <= 1) {
       return elements;
     }
@@ -47,30 +29,27 @@ public class QuickSort {
       }
     }
     List<Integer> result = new LinkedList<>();
-    result.addAll(quickSort(left));
+    result.addAll(sort(left));
     result.add(pivot);
-    result.addAll(quickSort(right));
+    result.addAll(sort(right));
     return result;
   }
 
-  public static List<Integer> quickSortCompact(List<Integer> elements) {
-    return Arrays.asList(quickSortCompact(elements.toArray(new Integer[0])));
+  @Override
+  public Integer[] sortCompact(Integer[] elements) {
+    return sortCompact(elements, 0, elements.length - 1);
   }
 
-  public static Integer[] quickSortCompact(Integer[] elements) {
-    return quickSortCompact(elements, 0, elements.length - 1);
-  }
-
-  public static Integer[] quickSortCompact(Integer[] elements, int start, int end) {
+  public Integer[] sortCompact(Integer[] elements, int start, int end) {
     if (start < end) {
       int pivotIndex = partition(elements, start, end);
-      quickSortCompact(elements, start, pivotIndex - 1);
-      quickSortCompact(elements, pivotIndex + 1, end);
+      sortCompact(elements, start, pivotIndex - 1);
+      sortCompact(elements, pivotIndex + 1, end);
     }
     return elements;
   }
 
-  private static Integer partition(Integer[] elements, int start, int end) {
+  private Integer partition(Integer[] elements, int start, int end) {
     Integer pivot = elements[start];
     Integer i = start;
     for (Integer j = start + 1; j <= end; j++) {
@@ -81,12 +60,6 @@ public class QuickSort {
     }
     swap(elements, start, i);
     return i;
-  }
-
-  private static void swap(Integer[] elements, int i, int j) {
-    Integer temp = elements[i];
-    elements[i] = elements[j];
-    elements[j] = temp;
   }
 
 }
