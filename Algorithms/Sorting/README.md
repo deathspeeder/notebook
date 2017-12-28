@@ -68,7 +68,7 @@
     elements[j] = temp;
   }
 ```
-- 代码：[QuickSort.java](QuickSort.java)
+- 代码：[QuickSort.java](../../src/com/ms/sorting/QuickSort.java)
 - 参考：[维基百科Quick sort](https://en.wikipedia.org/wiki/Quicksort)
 
 ### 那些`O(n^2)`的简单粗暴排序
@@ -119,9 +119,9 @@
   }
 ```
 
-- 代码：[BubbleSort.java](BubbleSort.java)
-- 代码：[InsertionSort.java](InsertionSort.java)
-- 代码：[SelectionSort.java](SelectionSort.java)
+- 代码：[BubbleSort.java](../../src/com/ms/sorting/BubbleSort.java)
+- 代码：[InsertionSort.java](../../src/com/ms/sorting/InsertionSort.java)
+- 代码：[SelectionSort.java](../../src/com/ms/sorting/SelectionSort.java)
 - 参考：[维基百科Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - 参考：[维基百科Insertion sort](https://en.wikipedia.org/wiki/Insertion_sort)
 - 参考：[维基百科Selection sort](https://en.wikipedia.org/wiki/Selection_sort)
@@ -182,11 +182,39 @@
   }
 ```
 
-堆排序
-TODO
+堆排序TODO
+```Java
+  public Integer[] sort(Integer[] elements) {
+    for (int i = elements.length / 2 - 1; i >= 0; i--) {
+      heapify(elements, i, elements.length);
+    }
 
-- 代码：[MergeSort.java](MergeSort.java)
+    for (int i = elements.length - 1; i > 0; i--) {
+      swap(elements, 0, i);
+      heapify(elements, 0, i);
+
+    }
+    return elements;
+  }
+
+  private void heapify(Integer[] elements, int i, int length) {
+    int child;
+    for (; 2 * i + 1 < length; i = child) {
+      child = 2 * i + 1;
+      if (child < length - 1 && elements[child + 1] > elements[child])
+        ++child;
+      if (elements[i] < elements[child])
+        swap(elements, i, child);
+      else
+        break;
+    }
+  }
+```
+
+- 代码：[MergeSort.java](../../src/com/ms/sorting/MergeSort.java)
+- 代码：[HeapSort.java](../../src/com/ms/sorting/HeapSort.java)
 - 参考：[维基百科Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
+- 参考：[维基百科Merge sort](https://en.wikipedia.org/wiki/Heap_sort)
 
 ## 分布式排序
 
