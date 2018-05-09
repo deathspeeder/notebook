@@ -194,5 +194,37 @@ synchronized关键字有两种用法：1.作用于方法上，2.作用于一个�
 ```
 
 
+## wait/notify
+
+假设在存取钱的例子中我们要求存款余额不能为负数，当余额为0时，取钱者需要等待直到有存钱者存入钱。那么当余额为0 时，withdraw方法需要被挂起并等待存钱线程存钱。
+```Java
+    public synchronized void withdraw(double amount) {
+      if (totalAmount <= 0) {
+        try {
+          wait();
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+      double newAmount = totalAmount - amount;
+      try {
+        Thread.sleep((long) Math.random() * 100);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      totalAmount = newAmount;
+    }
+
+    public synchronized void deposit(double amount) {
+      double newAmount = totalAmount + amount;
+      try {
+        Thread.sleep((long) Math.random() * 100);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      totalAmount = newAmount;
+      notify();
+    }
+```
 
 
