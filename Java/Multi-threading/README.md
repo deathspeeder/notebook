@@ -1,4 +1,3 @@
-
 ## 线程的创建
 Java提供两种创建线程的方式：1.继承Thread类并实现run方法，2.实现Runnable接口。
 
@@ -54,7 +53,6 @@ Java 线程一般分为5个状态： NEW，RUNNABLE，RUNNING，BLOCKED/WAITING�
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class SyncDemo {
   public static void main(String[] args) {
@@ -93,7 +91,6 @@ public class SyncDemo {
 
   class Bank {
     private double totalAmount = 0;
-    private Random random = new Random();
 
     public void withdraw(double amount) {
       double newAmount = totalAmount - amount;
@@ -146,4 +143,56 @@ public class SyncDemo {
 }
 
 ```
+
+这个例子中，100个存钱线程同时向一个银行存钱，100个取钱线程同时取钱，最终的余额应该为0才对，但是由于临界区资源没有同步访问控制，导致结果并不正确。这个例子中临界代码区为方法withdraw和deposit。当多个线程同时进入临界区时，每个线程执行的速度是不确定的，每个线程也可能在临界区中执行时被操作系统挂起。例如，假如线程A和B同时进入withdraw方法，A、B的执行顺序可能为：
+```Java
+A: double newAmount = totalAmount - amount;
+B: double newAmount = totalAmount - amount;
+A: totalAmount = newAmount;
+B: totalAmount = newAmount;
+```
+
+假设totalAmount一开始为0，那么第一行执行后newAmount=-100, totalAmount=0, 第二行执行时totalAmount=0，所以执行后newAmount=-100，第三行和第四行执行后totalAmount=-100。而正确的结果应该是-200。
+
+Java提供synchronized关键字、同步锁等方式实现线程同步。
+
+### synchronized关键字
+synchronized关键字有两种用法：1.作用于方法上，2.作用于一个对象。Java每个对象都有一个内置锁，当synchronized修饰一个对象作用于一片代码区域时，内置锁会用于控制临界区只允许一个线程单独进入。
+```Java
+    public synchronized void withdraw(double amount) {
+      ...
+    }
+
+    public void deposit(double amount) {
+      synchronized (this) {
+        double newAmount = totalAmount + amount;
+        try {
+          Thread.sleep((long) Math.random() * 100);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        totalAmount = newAmount;
+      }
+    }
+```
+
+### 同步锁
+```Java
+    private Lock lock = new ReentrantLock();
+
+    public synchronized void withdraw(double amount) {
+      lock.lock();
+      double newAmount = totalAmount - amount;
+      try {
+        Thread.sleep((long) Math.random() * 100);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      totalAmount = newAmount;
+      lock.unlock();
+    }
+```
+
+
+
 
